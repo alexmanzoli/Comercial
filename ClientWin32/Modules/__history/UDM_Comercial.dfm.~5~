@@ -68,7 +68,6 @@ object DM_Comercial: TDM_Comercial
     end
     object cdsClienteCEP: TStringField
       FieldName = 'CEP'
-      EditMask = '00000\-999;1;_'
       FixedChar = True
       Size = 9
     end
@@ -83,7 +82,6 @@ object DM_Comercial: TDM_Comercial
     end
     object cdsClienteTELEFONE: TStringField
       FieldName = 'TELEFONE'
-      EditMask = '!\(99\)0000-0000;1;_'
     end
   end
   object dsProduto: TSQLDataSet
@@ -103,8 +101,8 @@ object DM_Comercial: TDM_Comercial
     Aggregates = <>
     Params = <>
     ProviderName = 'dspProduto'
-    Left = 366
-    Top = 106
+    Left = 365
+    Top = 107
     object cdsProdutoPRODUTOID: TIntegerField
       FieldName = 'PRODUTOID'
       Required = True
@@ -120,7 +118,6 @@ object DM_Comercial: TDM_Comercial
     end
     object cdsProdutoPRECO: TFMTBCDField
       FieldName = 'PRECO'
-      currency = True
       Precision = 18
       Size = 2
     end
