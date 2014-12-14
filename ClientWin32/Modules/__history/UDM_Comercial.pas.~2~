@@ -1,0 +1,26 @@
+unit UDM_Comercial;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, Data.DBXFirebird, Data.DB, Data.SqlExpr;
+
+type
+  TDM_Comercial = class(TDataModule)
+    Conexao: TSQLConnection;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  DM_Comercial: TDM_Comercial;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+end.

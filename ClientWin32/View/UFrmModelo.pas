@@ -1,0 +1,180 @@
+unit UFrmModelo;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, System.Actions,
+  Vcl.ActnList, Vcl.ImgList, Vcl.Buttons, Vcl.ToolWin, Vcl.ActnMan,
+  Vcl.ActnCtrls, Vcl.ActnMenus, Vcl.ComCtrls, Data.DB, Vcl.Grids, Vcl.DBGrids,
+  Vcl.ExtCtrls;
+
+type
+  TFrm_modelo = class(TForm)
+    ActionList1: TActionList;
+    ImageList1: TImageList;
+    ac_incluir: TAction;
+    ac_excluir: TAction;
+    ac_editar: TAction;
+    ac_pesquisar: TAction;
+    ac_imprimir: TAction;
+    ac_salvar: TAction;
+    ac_cancelar: TAction;
+    ac_sair: TAction;
+    ActionMainMenuBar1: TActionMainMenuBar;
+    BitBtn1: TBitBtn;
+    BitBtn2: TBitBtn;
+    BitBtn3: TBitBtn;
+    BitBtn4: TBitBtn;
+    BitBtn5: TBitBtn;
+    BitBtn6: TBitBtn;
+    BitBtn7: TBitBtn;
+    BitBtn8: TBitBtn;
+    pgccontrole: TPageControl;
+    tsCadastro: TTabSheet;
+    tspesquisar: TTabSheet;
+    Panel1: TPanel;
+    cbpesquisa: TComboBox;
+    edtvalor: TEdit;
+    BitBtn9: TBitBtn;
+    Campo: TLabel;
+    Label1: TLabel;
+    ac_buscar: TAction;
+    ds: TDataSource;
+    Label2: TLabel;
+    GridProdutos: TDBGrid;
+    procedure ac_incluirExecute(Sender: TObject);
+    procedure ac_excluirExecute(Sender: TObject);
+    procedure ac_editarExecute(Sender: TObject);
+    procedure ac_pesquisarExecute(Sender: TObject);
+    procedure ac_imprimirExecute(Sender: TObject);
+    procedure ac_salvarExecute(Sender: TObject);
+    procedure ac_cancelarExecute(Sender: TObject);
+    procedure ac_sairExecute(Sender: TObject);
+    procedure ac_incluirUpdate(Sender: TObject);
+    procedure ac_salvarUpdate(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure Label2Click(Sender: TObject);
+    procedure ac_buscarExecute(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  cbxfield : TComboBox;
+  Frm_modelo: TFrm_modelo;
+
+implementation
+
+uses
+  Datasnap.DBClient;
+
+{$R *.dfm}
+
+procedure TFrm_modelo.ac_buscarExecute(Sender: TObject);
+begin
+if (cbpesquisa.Text <> EmptyStr) and
+     (edtvalor.Text <> emptyStr) then
+  begin
+    ds.DataSet.Filter   := 'Upper('+cbpesquisa.Text+') like '+QuotedStr(UpperCase(edtvalor.Text)+'%');
+    ds.DataSet.Filtered := True;
+    if not ds.DataSet.Active then
+    ds.DataSet.Open;
+
+  end;
+end;
+
+procedure TFrm_modelo.ac_cancelarExecute(Sender: TObject);
+begin
+ if ds.DataSet is TClientDataSet then
+    TClientDataSet(ds.DataSet).CancelUpdates;
+    pgccontrole.ActivePage := tspesquisar;
+end;
+
+procedure TFrm_modelo.ac_editarExecute(Sender: TObject);
+begin
+  if ds.DataSet.Active then
+  begin
+  pgccontrole.ActivePage := tsCadastro;
+  ds.DataSet.Edit;
+  end;
+end;
+
+procedure TFrm_modelo.ac_excluirExecute(Sender: TObject);
+begin
+  if not ds.DataSet.IsEmpty then
+  begin
+  ds.DataSet.Delete;
+  if ds.DataSet is TClientDataSet then
+  TclientDataSet(ds.DataSet).ApplyUpdates(0);
+  end;
+end;
+
+procedure TFrm_modelo.ac_imprimirExecute(Sender: TObject);
+begin
+ ShowMessage('Em desenvolvimento');
+end;
+
+procedure TFrm_modelo.ac_incluirExecute(Sender: TObject);
+begin
+  pgccontrole.ActivePage := tsCadastro;
+  if not ds.DataSet.Active then
+    ds.DataSet.Open;
+
+  ds.DataSet.Insert;
+end;
+
+procedure TFrm_modelo.ac_incluirUpdate(Sender: TObject);
+begin
+  TAction(Sender).Enabled := ds.DataSet.State in [dsInactive, dsBrowse];
+end;
+
+procedure TFrm_modelo.ac_pesquisarExecute(Sender: TObject);
+begin
+  if pgccontrole.ActivePage = tspesquisar  then
+  pgccontrole.ActivePage := tsCadastro
+
+else
+  pgccontrole.ActivePage := tspesquisar;
+end;
+
+procedure TFrm_modelo.ac_sairExecute(Sender: TObject);
+begin
+ Close;
+end;
+
+procedure TFrm_modelo.ac_salvarExecute(Sender: TObject);
+begin
+  if ds.DataSet is TClientDataSet then
+    TClientDataSet(ds.DataSet).ApplyUpdates(0);
+    pgccontrole.ActivePage := tspesquisar;
+end;
+
+procedure TFrm_modelo.ac_salvarUpdate(Sender: TObject);
+begin
+  TAction(Sender).Enabled := ds.DataSet.State in [dsInsert, dsEdit];
+  Label2.Visible := ds.DataSet.Filtered;
+end;
+procedure TFrm_modelo.FormCreate(Sender: TObject);
+var
+  I: Integer;
+begin
+    for I := 0 to Pred(ds.DataSet.FieldCount) do
+    begin
+    if ds.DataSet.Fields[I].DataType in [ftString,ftWideString, ftFixedChar, ftInteger, ftFloat, ftDate, ftFloat]  then
+      cbpesquisa.Items.Add(ds.DataSet.Fields[I].FieldName);
+
+    end;
+
+
+
+end;
+
+procedure TFrm_modelo.Label2Click(Sender: TObject);
+begin
+  ds.DataSet.Filtered := False;
+end;
+
+end.

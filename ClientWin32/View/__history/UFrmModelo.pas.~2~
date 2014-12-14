@@ -1,0 +1,43 @@
+unit UFrmModelo;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, System.Actions,
+  Vcl.ActnList, Vcl.ImgList, Vcl.Buttons;
+
+type
+  TFrm_modelo = class(TForm)
+    BitBtn1: TBitBtn;
+    BitBtn2: TBitBtn;
+    BitBtn3: TBitBtn;
+    BitBtn4: TBitBtn;
+    BitBtn5: TBitBtn;
+    BitBtn6: TBitBtn;
+    BitBtn7: TBitBtn;
+    ActionList1: TActionList;
+    ImageList1: TImageList;
+    ac_incluir: TAction;
+    ac_excluir: TAction;
+    ac_editar: TAction;
+    ac_pesquisar: TAction;
+    ac_imprimir: TAction;
+    ac_salvar: TAction;
+    ac_cancelar: TAction;
+    ac_sair: TAction;
+    BitBtn8: TBitBtn;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Frm_modelo: TFrm_modelo;
+
+implementation
+
+{$R *.dfm}
+
+end.

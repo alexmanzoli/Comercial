@@ -1,0 +1,128 @@
+object DM_Comercial: TDM_Comercial
+  OldCreateOrder = False
+  Height = 364
+  Width = 655
+  object DBAcesso: TSQLConnection
+    ConnectionName = 'FBConnection'
+    DriverName = 'Firebird'
+    LoadParamsOnConnect = True
+    LoginPrompt = False
+    Params.Strings = (
+      'DriverName=Firebird'
+      'Database=C:\Users\Master\COMERCIAL\DB\BDVENDAS.FDB'
+      'RoleName=RoleName'
+      'User_Name=sysdba'
+      'Password=masterkey'
+      'ServerCharSet='
+      'SQLDialect=3'
+      'ErrorResourceFile='
+      'LocaleCode=0000'
+      'BlobSize=-1'
+      'CommitRetain=False'
+      'WaitOnLocks=True'
+      'IsolationLevel=ReadCommitted'
+      'Trim Char=False')
+    Left = 25
+    Top = 11
+  end
+  object dsCliente: TSQLDataSet
+    CommandText = 'select * from CLIENTES'
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = DBAcesso
+    Left = 255
+    Top = 43
+  end
+  object dspCliente: TDataSetProvider
+    DataSet = dsCliente
+    Left = 313
+    Top = 43
+  end
+  object cdsCliente: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspCliente'
+    Left = 370
+    Top = 44
+  end
+  object dsProduto: TSQLDataSet
+    CommandText = 'select * from PRODUTOS'
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = DBAcesso
+    Left = 249
+    Top = 109
+  end
+  object dspProduto: TDataSetProvider
+    DataSet = dsProduto
+    Left = 307
+    Top = 109
+  end
+  object cdsProduto: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspProduto'
+    Left = 366
+    Top = 107
+  end
+  object dsUsuario: TSQLDataSet
+    CommandText = 'select * from USUARIOS'
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = DBAcesso
+    Left = 253
+    Top = 179
+  end
+  object dspUsuario: TDataSetProvider
+    DataSet = dsUsuario
+    Left = 311
+    Top = 179
+  end
+  object cdsUsuario: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspUsuario'
+    Left = 369
+    Top = 177
+  end
+  object dsPerfil: TSQLDataSet
+    CommandText = 'select * from PERFIL'
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = DBAcesso
+    Left = 45
+    Top = 270
+  end
+  object dspPerfil: TDataSetProvider
+    DataSet = dsPerfil
+    Left = 103
+    Top = 270
+  end
+  object cdsPerfil: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspPerfil'
+    Left = 161
+    Top = 268
+  end
+  object dsVendas: TSQLDataSet
+    CommandText = 'select * from VENDAS'
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = DBAcesso
+    Left = 460
+    Top = 288
+  end
+  object dspVendas: TDataSetProvider
+    DataSet = dsVendas
+    Left = 519
+    Top = 288
+  end
+  object cdsVendas: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspVendas'
+    Left = 585
+    Top = 290
+  end
+end

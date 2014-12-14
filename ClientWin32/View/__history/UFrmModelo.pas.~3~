@@ -1,0 +1,37 @@
+unit UFrmModelo;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, System.Actions,
+  Vcl.ActnList, Vcl.ImgList, Vcl.Buttons, Vcl.ToolWin, Vcl.ActnMan,
+  Vcl.ActnCtrls, Vcl.ActnMenus;
+
+type
+  TFrm_modelo = class(TForm)
+    ActionList1: TActionList;
+    ImageList1: TImageList;
+    ac_incluir: TAction;
+    ac_excluir: TAction;
+    ac_editar: TAction;
+    ac_pesquisar: TAction;
+    ac_imprimir: TAction;
+    ac_salvar: TAction;
+    ac_cancelar: TAction;
+    ac_sair: TAction;
+    ActionMainMenuBar1: TActionMainMenuBar;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Frm_modelo: TFrm_modelo;
+
+implementation
+
+{$R *.dfm}
+
+end.

@@ -1,0 +1,20 @@
+program Comercial;
+
+uses
+  Vcl.Forms,
+  UFrmPrincipal in 'View\UFrmPrincipal.pas' {FRM_PRINCIPAL},
+  UDM_Comercial in 'Modules\UDM_Comercial.pas' {DM_Comercial: TDataModule},
+  Vcl.Themes,
+  Vcl.Styles;
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  TStyleManager.TrySetStyle('Metropolis UI Black');
+  Application.Title := 'Sistema Comercial';
+  Application.CreateForm(TFRM_PRINCIPAL, FRM_PRINCIPAL);
+  Application.CreateForm(TDM_Comercial, DM_Comercial);
+  Application.Run;
+end.

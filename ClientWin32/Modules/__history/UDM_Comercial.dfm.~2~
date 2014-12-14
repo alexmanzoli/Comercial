@@ -1,0 +1,27 @@
+object DM_Comercial: TDM_Comercial
+  OldCreateOrder = False
+  Height = 302
+  Width = 563
+  object Conexao: TSQLConnection
+    ConnectionName = 'FBConnection'
+    DriverName = 'Firebird'
+    LoginPrompt = False
+    Params.Strings = (
+      'DriverName=Firebird'
+      'Database=C:\Users\Master\COMERCIAL\DB\BDVENDAS.FDB'
+      'RoleName=RoleName'
+      'User_Name=sysdba'
+      'Password=masterkey'
+      'ServerCharSet='
+      'SQLDialect=3'
+      'ErrorResourceFile='
+      'LocaleCode=0000'
+      'BlobSize=-1'
+      'CommitRetain=False'
+      'WaitOnLocks=True'
+      'IsolationLevel=ReadCommitted'
+      'Trim Char=False')
+    Left = 54
+    Top = 29
+  end
+end

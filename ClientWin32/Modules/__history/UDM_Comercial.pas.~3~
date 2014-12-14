@@ -1,0 +1,42 @@
+unit UDM_Comercial;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, Data.DBXFirebird, Data.DB, Data.SqlExpr,
+  Data.FMTBcd, Datasnap.DBClient, Datasnap.Provider;
+
+type
+  TDM_Comercial = class(TDataModule)
+    DBAcesso: TSQLConnection;
+    dsCliente: TSQLDataSet;
+    dspCliente: TDataSetProvider;
+    cdsCliente: TClientDataSet;
+    dsProduto: TSQLDataSet;
+    dspProduto: TDataSetProvider;
+    cdsProduto: TClientDataSet;
+    dsUsuario: TSQLDataSet;
+    dspUsuario: TDataSetProvider;
+    cdsUsuario: TClientDataSet;
+    dsPerfil: TSQLDataSet;
+    dspPerfil: TDataSetProvider;
+    cdsPerfil: TClientDataSet;
+    dsVendas: TSQLDataSet;
+    dspVendas: TDataSetProvider;
+    cdsVendas: TClientDataSet;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  DM_Comercial: TDM_Comercial;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+end.
